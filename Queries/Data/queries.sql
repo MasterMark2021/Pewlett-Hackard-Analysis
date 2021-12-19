@@ -93,3 +93,30 @@ LEFT JOIN dept_emp as d
 ON c.emp_no = d.emp_no
 GROUP BY d.dept_no
 Order by d.dept_no;
+
+
+select a.first_name, 
+a.last_name,a.gender, b.salary
+INTO Employee_Information
+From employees as a left join salaries as b  
+ON a.emp_no = b.emp_no
+WHERE (a.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (a.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+ORDER BY b.salary;
+
+
+---List of managers per department
+SELECT  dm.dept_no,
+        d.dept_name,
+        dm.emp_no,
+        ce.last_name,
+        ce.first_name,
+        dm.from_date,
+        dm.to_date
+INTO manager_info
+FROM dept_manager AS dm
+    INNER JOIN departments AS d
+        ON (dm.dept_no = d.dept_no)
+    INNER JOIN current_emp AS ce
+        ON (dm.emp_no = ce.emp_no);
+	
