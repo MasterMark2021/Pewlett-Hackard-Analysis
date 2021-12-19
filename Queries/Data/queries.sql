@@ -85,4 +85,11 @@ ON a.emp_no = b.emp_no
 WHERE b.to_date = ('9999-01-01');
 
 select * from current_emp
-	
+
+-- Employee count by department number
+SELECT COUNT(c.emp_no), d.dept_no
+FROM current_emp as c
+LEFT JOIN dept_emp as d
+ON c.emp_no = d.emp_no
+GROUP BY d.dept_no
+Order by d.dept_no;
